@@ -1,10 +1,13 @@
+import CustomThemeProvider from './components/CustomThemeProvider';
 import Layout from './components/Layout';
 
 function App() {
   return (
-    <Layout>
-      Home page
-    </Layout>
+    <CustomThemeProvider>
+      <Layout>
+        Home page
+      </Layout>
+    </CustomThemeProvider>
   );
 }
 
