@@ -1,7 +1,7 @@
 const productList = [
   {
     id: '123',
-    title: "blue Drum Set",
+    title: "Blue Drum Set",
     description: 'Blue drums description',
     brand: 'Yamaha',
     price: 59999,
