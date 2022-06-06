@@ -18,6 +18,7 @@ const THEME = createTheme({
       styleOverrides: {
         root: {
           borderRadius: '25px',
+          fontSize: '.75rem'
         }
       }
     }

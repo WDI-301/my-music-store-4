@@ -1,12 +1,11 @@
 import CustomThemeProvider from './components/CustomThemeProvider';
-import Layout from './components/Layout';
+import HomePage from './components/pages/HomePage';
+
 
 function App() {
   return (
     <CustomThemeProvider>
-      <Layout>
-        Home page
-      </Layout>
+      <HomePage />
     </CustomThemeProvider>
   );
 }
