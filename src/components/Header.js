@@ -1,8 +1,14 @@
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { AppBar, Button, IconButton, Toolbar, Typography } from "@mui/material";
+import { AppBar, Badge, Button, IconButton, Toolbar, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 
-const Header = () => {
+const Header = (props) => {
+  const { shoppingCart } = props;
+
+  const itemQuantity = shoppingCart.reduce((acc, cartItem) => {
+    return acc + cartItem.quantity
+  }, 0);
+
   return (
     <AppBar position="static" color="secondary">
         <Toolbar>
@@ -17,7 +23,9 @@ const Header = () => {
             aria-label="Go to shopping cart"
             color="inherit"
           >
-            <ShoppingCartIcon />
+            <Badge badgeContent={itemQuantity} color="primary">
+              <ShoppingCartIcon />
+            </Badge>
           </IconButton>
         </Toolbar>
       </AppBar>
