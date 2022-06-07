@@ -1,14 +1,17 @@
-import { useState } from 'react';
+import { createContext, useState } from 'react';
 import CustomThemeProvider from './components/CustomThemeProvider';
 import CartPage from './components/pages/CartPage';
 import HomePage from './components/pages/HomePage';
 
+export const shoppingCartContext = createContext(); 
 
 function App() {
   const [page, setPage] = useState('homePage');
 
 
   const [shoppingCart, setShoppingCart] = useState([]);
+
+
 
   const addToCart = (product) => {
     // does this product already exist in the shopping cart?
@@ -52,16 +55,18 @@ function App() {
 
   return (
     <CustomThemeProvider>
+      <shoppingCartContext.Provider value={{ shoppingCart, addToCart, removeFromCart }} >
+        
       <button onClick={() => setPage('homePage')}>Home Page</button>
       <button onClick={() => setPage('cartPage')}>Cart Page</button>
       {
-        page === 'homePage' ? <HomePage addToCart={addToCart} shoppingCart={shoppingCart} /> :
+        page === 'homePage' ? <HomePage addToCart={addToCart} /> :
         <CartPage
-          shoppingCart={shoppingCart}
-          addToCart={addToCart}
-          removeFromCart={removeFromCart}
+         addToCart={addToCart}
+         removeFromCart={removeFromCart}
         />
       }
+      </shoppingCartContext.Provider>
     </CustomThemeProvider>
   );
 }

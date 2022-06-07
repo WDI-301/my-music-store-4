@@ -6,8 +6,6 @@ import ProductDisplay from '../ProductDisplay';
 
 
 const HomePage = (props) => {
-  const { addToCart, shoppingCart } = props;
-
   const [productData, setProductData] = useState([]);
 
 
@@ -21,7 +19,7 @@ const HomePage = (props) => {
     )
 
   return (
-    <Layout shoppingCart={shoppingCart}>
+    <Layout>
       <Box
         width={1}
         display="flex"
@@ -30,7 +28,7 @@ const HomePage = (props) => {
       >
         {productData.map(product =>
           <Box m={4} key={product.title} width="375px" maxWidth="100%">
-            <ProductDisplay product={product} addToCart={addToCart} />
+            <ProductDisplay product={product} />
           </Box>
         )}
       </Box>

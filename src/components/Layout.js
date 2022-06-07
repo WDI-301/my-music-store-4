@@ -3,11 +3,11 @@ import React from 'react';
 import Header from './Header';
 
 const Layout = (props) => {
-  const { children, shoppingCart } = props;
+  const { children } = props;
 
   return (
     <Box minWidth={320}>
-      <Header shoppingCart={shoppingCart} />
+      <Header />
       <div>
         {children}
       </div>

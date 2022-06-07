@@ -9,12 +9,14 @@ import CardMedia from '@mui/material/CardMedia';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
-import * as React from 'react';
+import { useContext } from 'react';
+import { shoppingCartContext } from '../App';
 
 
 const ProductDisplay = (props) => {
+ const { addToCart } = useContext(shoppingCartContext);
+
   const {
-    addToCart,
     product,
   } = props;
 

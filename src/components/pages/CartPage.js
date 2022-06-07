@@ -1,4 +1,6 @@
 import { Box } from '@mui/material';
+import { useContext } from 'react';
+import { shoppingCartContext } from '../../App';
 import Layout from '../Layout';
 
 
@@ -25,7 +27,7 @@ const CartPage = (props) => {
   const {
     shoppingCart,
     removeFromCart,
-  } = props;
+  } = useContext(shoppingCartContext);
 
 
   // We want to display whats in the shopping cart.
