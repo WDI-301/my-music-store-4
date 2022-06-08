@@ -1,8 +1,7 @@
+import React, { useContext } from 'react';
 import { Box } from '@mui/material';
-import { useContext } from 'react';
-import { shoppingCartContext } from '../../App';
 import Layout from '../Layout';
-
+import { shoppingCartContext } from '../../context/shoppingCartContext';
 
 // const sampleShoppingCart = [
 
@@ -22,36 +21,45 @@ import Layout from '../Layout';
 // },
 // ];
 
-const CartPage = (props) => {
-
+function CartPage() {
   const {
     shoppingCart,
     removeFromCart,
   } = useContext(shoppingCartContext);
 
-
   // We want to display whats in the shopping cart.
   return (
     <Layout shoppingCart={shoppingCart}>
-     <Box
+      <Box
         width={1}
         display="flex"
         flexDirection="column"
         alignItems="center"
       >
-        {shoppingCart.map(cartItem =>
-        <Box p={3}>
-          <Box>
-            {cartItem.title} - Qty: {cartItem.quantity} - ${cartItem.price / 100} total$: {cartItem.total/100}
-          </Box>        
+        {shoppingCart.map((cartItem) => (
+          <Box p={3} key={cartItem.id}>
             <Box>
-              <button onClick={() => removeFromCart(cartItem.id)} >Remove From cart</button>
+              {cartItem.title}
+              {' '}
+              - Qty:
+              {cartItem.quantity}
+              {' '}
+              - $
+              {cartItem.price / 100}
+              {' '}
+              total$:
+              {cartItem.total / 100}
+            </Box>
+            <Box>
+              <button type="button" onClick={() => removeFromCart(cartItem.id)}>
+                Remove From cart
+              </button>
             </Box>
           </Box>
-        )}
-     </Box>
+        ))}
+      </Box>
     </Layout>
-  )
+  );
 }
 
 export default CartPage;
