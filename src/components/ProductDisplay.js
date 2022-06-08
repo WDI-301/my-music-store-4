@@ -1,7 +1,6 @@
-import React, { useContext } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { Button, Box } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -9,10 +8,11 @@ import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { shoppingCartContext } from '../context/shoppingCartContext';
+import React from 'react';
+import { useShoppingCart } from '../context/shoppingCartContext';
 
 function ProductDisplay(props) {
-  const { addToCart } = useContext(shoppingCartContext);
+  const { addToCart } = useShoppingCart();
 
   const {
     product,

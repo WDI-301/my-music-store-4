@@ -1,6 +1,8 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 export const shoppingCartContext = createContext();
+
+export const useShoppingCart = () => useContext(shoppingCartContext);
 
 // This component is gonna handle everythign that relates to the shopping cart.
 // that way all we have to do is wrap our application with it.
@@ -50,8 +52,10 @@ function ShoppingCartProvider(props) {
     setShoppingCart(newShoppingCart);
   };
 
+  const emptyCart = () => setShoppingCart([]);
+
   return (
-    <shoppingCartContext.Provider value={{ shoppingCart, addToCart, removeFromCart }}>
+    <shoppingCartContext.Provider value={{ shoppingCart, addToCart, removeFromCart, emptyCart }}>
       {children}
     </shoppingCartContext.Provider>
   );
