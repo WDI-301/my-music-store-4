@@ -1,7 +1,7 @@
 const productList = [
   {
     id: '123',
-    title: "Blue Drum Set",
+    title: 'Blue Drum Set',
     description: 'Blue drums description',
     brand: 'Yamaha',
     price: 59999,
@@ -9,7 +9,7 @@ const productList = [
   },
   {
     id: '234',
-    title: "Red Drum Set",
+    title: 'Red Drum Set',
     description: 'Red drums description',
     brand: 'Yamaha',
     price: 59999,
@@ -17,10 +17,28 @@ const productList = [
   },
 ];
 
-export const fetchProductData = () => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(productList)
-    } ,1);
-  })
+const sampleUserData = {
+  id: '007',
+  firstName: 'John',
+  lastName: 'Doe',
+  email: 'john@email.com',
+  favorites: ['124'], // IDs of favorite Products
 };
+
+export const fetchProductData = () => new Promise((resolve) => {
+  setTimeout(() => {
+    resolve(productList);
+  }, 1);
+});
+
+export const logInUserRequest = () => new Promise((resolve) => {
+  setTimeout(() => {
+    resolve({ data: sampleUserData });
+  }, 1000);
+});
+
+export const logOutUserRequest = () => new Promise((resolve) => {
+  setTimeout(() => {
+    resolve('Sign out successfully');
+  }, 1000);
+});
