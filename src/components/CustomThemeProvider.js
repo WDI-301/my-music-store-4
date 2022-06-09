@@ -1,4 +1,5 @@
-import { createTheme, ThemeProvider } from "@mui/material";
+import React from 'react';
+import { createTheme, ThemeProvider } from '@mui/material';
 
 const PURPLE = '#6750A4';
 const BLACK = '#1C1B1F';
@@ -18,21 +19,21 @@ const THEME = createTheme({
       styleOverrides: {
         root: {
           borderRadius: '25px',
-          fontSize: '.75rem'
-        }
-      }
-    }
-  }
+          fontSize: '.75rem',
+        },
+      },
+    },
+  },
 });
 
-const CustomThemeProvider = (props) => {
+function CustomThemeProvider(props) {
   const { children } = props;
 
   return (
-  <ThemeProvider theme={THEME}>
-    {children}
-  </ThemeProvider>
-  )
+    <ThemeProvider theme={THEME}>
+      {children}
+    </ThemeProvider>
+  );
 }
 
 export default CustomThemeProvider;

@@ -1,22 +1,21 @@
+import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
-import { useEffect, useState } from 'react';
 import { fetchProductData } from '../../dataFetching';
 import Layout from '../Layout';
 import ProductDisplay from '../ProductDisplay';
 
-
-const HomePage = () => {
+function HomePage() {
   const [productData, setProductData] = useState([]);
 
-
   // This is what runs after the first render:
-  useEffect(() => {
+  useEffect(
+    () => {
       fetchProductData()
-      .then(data => setProductData(data))
-      .catch(error => console.log('error: ', error))
+        .then((data) => setProductData(data))
+        .catch((error) => console.log('error: ', error));
     },
-    []
-    )
+    [],
+  );
 
   return (
     <Layout>
@@ -26,14 +25,14 @@ const HomePage = () => {
         flexDirection="column"
         alignItems="center"
       >
-        {productData.map(product =>
+        {productData.map((product) => (
           <Box m={4} key={product.title} width="375px" maxWidth="100%">
             <ProductDisplay product={product} />
           </Box>
-        )}
+        ))}
       </Box>
     </Layout>
-  )
+  );
 }
 
 export default HomePage;
