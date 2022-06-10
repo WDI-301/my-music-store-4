@@ -3,6 +3,7 @@ import { Box } from '@mui/material';
 import { fetchProductData } from '../../dataFetching';
 import Layout from '../Layout';
 import ProductDisplay from '../ProductDisplay';
+import Counter from '../Counter';
 
 function HomePage() {
   const [productData, setProductData] = useState([]);
@@ -25,6 +26,9 @@ function HomePage() {
         flexDirection="column"
         alignItems="center"
       >
+        <Box my={6}>
+          <Counter />
+        </Box>
         {productData.map((product) => (
           <Box m={4} key={product.title} width="375px" maxWidth="100%">
             <ProductDisplay product={product} />
