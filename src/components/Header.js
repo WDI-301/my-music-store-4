@@ -4,9 +4,11 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { useShoppingCart } from '../context/shoppingCartContext';
+import { useUser } from '../context/userContext';
 
 function Header() {
   const { shoppingCart } = useShoppingCart();
+  const { user } = useUser();
 
   const itemQuantity = shoppingCart.reduce((acc, cartItem) => acc + cartItem.quantity, 0);
 
@@ -17,7 +19,11 @@ function Header() {
           My Music Store
         </Typography>
         <Box mr={2}>
-          <Button variant="contained" color="primary">Sign In</Button>
+          {
+          user
+            ? `Hi ${user.firstName}!`
+            : <Button variant="contained" color="primary">Sign In</Button>
+          }
         </Box>
         <IconButton
           size="large"
