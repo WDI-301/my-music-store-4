@@ -1,5 +1,6 @@
-import { Box, Button, TextField } from '@mui/material';
 import React, { useState } from 'react';
+import { Box, Button, TextField } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../context/userContext';
 import { logInUserRequest } from '../../dataFetching';
 import Layout from '../Layout';
@@ -11,6 +12,12 @@ function SignInPage() {
     email: '',
     password: '',
   });
+
+  const navigate = useNavigate();
+
+  if (user) {
+    navigate('/');
+  }
 
   const onSubmit = () => {
     logInUserRequest()

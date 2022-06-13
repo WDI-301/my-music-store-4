@@ -1,7 +1,7 @@
-import { Box, Button } from '@mui/material';
 import React from 'react';
-import ReplayIcon from '@mui/icons-material/Replay';
 import HomeIcon from '@mui/icons-material/Home';
+import ReplayIcon from '@mui/icons-material/Replay';
+import { Box, Button } from '@mui/material';
 import { useShoppingCart } from '../../context/shoppingCartContext';
 import CartItem from '../CartItem';
 import Layout from '../Layout';
@@ -30,6 +30,7 @@ function CartPage() {
   } = useShoppingCart();
 
   // We want to display whats in the shopping cart.
+
   return (
     <Layout shoppingCart={shoppingCart}>
       <Box
