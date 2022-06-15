@@ -1,8 +1,7 @@
-import React from 'react';
 import HomeIcon from '@mui/icons-material/Home';
 import ReplayIcon from '@mui/icons-material/Replay';
 import { Box, Button } from '@mui/material';
-import { useShoppingCart } from '../../context/shoppingCartContext';
+import { useShoppingCart } from '../../reduxStore/shoppingCartState';
 import CartItem from '../CartItem';
 import Layout from '../Layout';
 // const sampleShoppingCart = [

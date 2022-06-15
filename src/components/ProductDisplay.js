@@ -8,8 +8,7 @@ import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import React from 'react';
-import { useShoppingCart } from '../context/shoppingCartContext';
+import { useShoppingCart } from '../reduxStore/shoppingCartState';
 
 function ProductDisplay(props) {
   const { addToCart } = useShoppingCart();
@@ -51,7 +50,14 @@ function ProductDisplay(props) {
       </CardContent>
       <CardActions disableSpacing>
         <Box display="flex" justifyContent="space-between" width="100%">
-          <Button variant="outlined" startIcon={<AddIcon />} onClick={() => addToCart(product)}>Add to cart</Button>
+          <Button
+            variant="outlined"
+            startIcon={<AddIcon />}
+            onClick={() => addToCart(product)}
+          >
+            Add to cart
+
+          </Button>
           <IconButton aria-label="add to favorites">
             <FavoriteIcon />
           </IconButton>

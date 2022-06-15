@@ -1,14 +1,40 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-export const shoppingCartContext = createContext();
-
-export const useShoppingCart = () => useContext(shoppingCartContext);
-
+/* eslint-disable default-param-last */
 export const ADD_TO_CART_ACTION = 'ADD_TO_CART';
 export const REMOVE_FROM_CART_ACTION = 'REMOVE_FROM_CART';
 export const EMPTY_CART_ACTION = 'EMPTY_CART';
 
-const shoppingCartReducer = (shoppingCart, action) => {
+// ACTION CREATORS:
+// A function that returns an action. yes its that simple.
+
+export const addToCartActionCreator = (product) => ({
+  type: ADD_TO_CART_ACTION,
+  payload: { product },
+});
+
+export const removeFromCartActionCreator = (productId) => ({
+  type: REMOVE_FROM_CART_ACTION,
+  payload: { productId },
+});
+
+export const emptyCartActionCreator = () => ({
+  type: REMOVE_FROM_CART_ACTION,
+});
+
+// Custom shoppingCart hook
+export const useShoppingCart = () => {
+  const dispatch = useDispatch();
+
+  return {
+    shoppingCart: useSelector((state) => state.shoppingCart),
+    addToCart: (product) => dispatch(addToCartActionCreator(product)),
+    removeFromCart: (productId) => dispatch(removeFromCartActionCreator(productId)),
+    emptyCart: () => dispatch(emptyCartActionCreator()),
+  };
+};
+
+const shoppingCartReducer = (shoppingCart = [], action) => {
   switch (action.type) {
     case ADD_TO_CART_ACTION: {
       const { product } = action.payload;
@@ -59,34 +85,4 @@ const shoppingCartReducer = (shoppingCart, action) => {
   }
 };
 
-// This component is gonna handle everythign that relates to the shopping cart.
-// that way all we have to do is wrap our application with it.
-// and that will allows to have a cleaner app.js file
-function ShoppingCartProvider(props) {
-  const { children } = props;
-
-  const [shoppingCart, dispatch] = useReducer(shoppingCartReducer, []);
-
-  const addToCart = (product) => {
-    dispatch({ type: ADD_TO_CART_ACTION, payload: { product } });
-  };
-
-  const removeFromCart = (productId) => {
-    dispatch({ type: REMOVE_FROM_CART_ACTION, payload: { productId } });
-  };
-
-  const emptyCart = () => {
-    dispatch({ type: EMPTY_CART_ACTION });
-  };
-
-  return (
-    <shoppingCartContext.Provider value={{
-      shoppingCart, addToCart, removeFromCart, emptyCart,
-    }}
-    >
-      {children}
-    </shoppingCartContext.Provider>
-  );
-}
-
-export default ShoppingCartProvider;
+export default shoppingCartReducer;
