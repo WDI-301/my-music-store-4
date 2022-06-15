@@ -1,6 +1,7 @@
 import HomeIcon from '@mui/icons-material/Home';
 import ReplayIcon from '@mui/icons-material/Replay';
 import { Box, Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 import { useShoppingCart } from '../../reduxStore/shoppingCartState';
 import CartItem from '../CartItem';
 import Layout from '../Layout';
@@ -58,13 +59,15 @@ function CartPage() {
             </Button>
           </Box>
           <Box mb={3}>
-            <Button
-              fullWidth
-              variant="contained"
-              startIcon={<HomeIcon />}
-            >
-              Home
-            </Button>
+            <Link to="/">
+              <Button
+                fullWidth
+                variant="contained"
+                startIcon={<HomeIcon />}
+              >
+                Home
+              </Button>
+            </Link>
           </Box>
         </Box>
       </Box>
