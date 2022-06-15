@@ -1,24 +1,28 @@
-/* eslint-disable default-param-last */
-// ACTIONS
-export const LOG_IN_ACTION = 'LOG_IN';
-export const LOG_OUT_ACTION = 'LOG_OUT';
+import { createSlice } from '@reduxjs/toolkit';
+import { useDispatch, useSelector } from 'react-redux';
 
-// reducer takes state and action as arguments and returns the updated version of the state.
-// is the function that handles all logic for changing the state
+export const userSlice = createSlice({
+  name: 'user',
+  initialState: null,
+  reducers: {
+    logIn: (state, action) => action.payload.user,
+    logOut: () => null,
+  },
+});
 
-const userInitialValue = null;
+// Action Creators automatically created by createSlice
+export const { logIn, logOut } = userSlice.actions;
 
-const userReducer = (state = userInitialValue, action) => {
-  switch (action.type) {
-    case LOG_IN_ACTION:
-      return action.payload.user;
+export const useUser = () => {
+  const dispatch = useDispatch();
 
-    case LOG_OUT_ACTION:
-      return null;
-
-    default:
-      return state;
-  }
+  return {
+    user: useSelector((state) => state.user),
+    logIn: (userData) => dispatch(logIn({ user: userData })),
+    logOut: () => dispatch(logOut()),
+  };
 };
+
+const userReducer = userSlice.reducer;
 
 export default userReducer;
