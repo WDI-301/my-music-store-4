@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const productList = [
   {
     id: '123',
@@ -25,11 +27,8 @@ const sampleUserData = {
   favorites: ['124'], // IDs of favorite Products
 };
 
-export const fetchProductData = () => new Promise((resolve) => {
-  setTimeout(() => {
-    resolve(productList);
-  }, 1);
-});
+// Call the back end and ask the server for the products.
+export const fetchProductData = () => axios.get('http://localhost:3017/get-products');
 
 export const logInUserRequest = () => new Promise((resolve) => {
   setTimeout(() => {
