@@ -23,6 +23,11 @@ function Header() {
           </Link>
         </Box>
         <Box mr={2}>
+          <Link to="/admin">
+            <Button variant="contained" color="primary">Control Panel</Button>
+          </Link>
+        </Box>
+        <Box mr={2}>
           <Link to="/user">
             {
           user
