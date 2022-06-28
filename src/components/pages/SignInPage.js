@@ -1,6 +1,6 @@
 import { Box, Button, TextField } from '@mui/material';
 import { useState } from 'react';
-import { logInUserRequest } from '../../dataFetching';
+import APIaxios from '../../APIaxios';
 import { useUser } from '../../reduxStore/userState';
 import Layout from '../Layout';
 
@@ -18,17 +18,20 @@ function SignInPage() {
   });
 
   const onSubmit = () => {
-    logInUserRequest()
+    APIaxios.post('/sign-in', { credentials: { email: signInForm.email, password: signInForm.password } })
       .then((response) => {
         // Put the resulting user data in react context over the entire application
         // That it can be accessed from any component in the component tree.
-        logIn(response.data);
+        logIn(response.data.user);
+      }).catch((error) => {
+        console.log('not able to log in');
+        console.log('error: ', error);
       });
   };
 
   const handleSignOut = () => {
     // lougout the user
-    logInUserRequest()
+    APIaxios.get('/sign-out')
       .then((response) => {
         console.log('user sign out response: ', response);
         // Remove the user data from the user context when a user logs out

@@ -1,8 +1,8 @@
 import {
   Box, Button, TextField, Typography,
 } from '@mui/material';
-import axios from 'axios';
 import React, { useState } from 'react';
+import APIaxios from '../../APIaxios';
 import Layout from '../Layout';
 
 const publishProductFormInitialState = {
@@ -18,7 +18,7 @@ function PublishProductPage() {
 
   const onSubmit = () => {
     // use axios to make the network requestAnimationFrame;
-    axios.post('http://localhost:3017/add-product', {
+    APIaxios.post('/add-product', {
       productData: { ...form, price: Number(form.price) },
     })
       .then(setForm(publishProductFormInitialState))

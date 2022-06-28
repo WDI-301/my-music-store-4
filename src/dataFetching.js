@@ -1,4 +1,4 @@
-import axios from 'axios';
+import APIaxios from './APIaxios';
 
 const sampleUserData = {
   id: '007',
@@ -9,7 +9,7 @@ const sampleUserData = {
 };
 
 // Call the back end and ask the server for the products.
-export const fetchProductData = () => axios.get('http://localhost:3017/get-products');
+export const fetchProductData = () => APIaxios.get('/get-products');
 
 export const logInUserRequest = () => new Promise((resolve) => {
   setTimeout(() => {
